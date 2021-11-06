@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Estado = require("./../model/estados");
+const Estado = require("./../models/estados");
 
 router.get("/", (req, res) => {
   res.status(200).json({ message: "Rota inicial Estados Ok" });
