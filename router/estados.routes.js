@@ -29,6 +29,16 @@ router.get("/listname/:nome", async (req, res) => {
 });
 
 router.post("/add", async (req, res) => {
+  if (!req.body.nome) {
+    res.status(400).json({ message: "Falta nome..." });
+    return;
+  } else if (!req.body.regiao) {
+    res.status(400).json({ message: "Falta regiao..." });
+    return;
+  } else if (!req.body.populacao) {
+    res.status(400).json({ message: "Falta populacao..." });
+    return;
+  }
   await Estado.create(req.body)
     .then(() => {
       res.status(200).json({ message: `Estado adicionado com sucesso.` });
@@ -42,6 +52,16 @@ router.post("/add", async (req, res) => {
 });
 
 router.put("/update/:id", async (req, res) => {
+  if (!req.body.nome) {
+    res.status(400).json({ message: "Falta nome..." });
+    return;
+  } else if (!req.body.regiao) {
+    res.status(400).json({ message: "Falta regiao..." });
+    return;
+  } else if (!req.body.populacao) {
+    res.status(400).json({ message: "Falta populacao..." });
+    return;
+  }
   if (req.params.id.length == 24) {
     await Estado.updateOne({ _id: req.params.id }, req.body)
       .then(() => {
@@ -65,12 +85,10 @@ router.delete("/delete/:id", async (req, res) => {
         res.status(400).json({ message: "ERROR" });
       });
   }
-  res
-    .status(400)
-    .json({
-      message:
-        "Número de ID não encontrado, verifique o número e tente novamente.",
-    });
+  res.status(400).json({
+    message:
+      "Número de ID não encontrado, verifique o número e tente novamente.",
+  });
 });
 
 module.exports = router;
