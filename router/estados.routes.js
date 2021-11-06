@@ -3,7 +3,7 @@ const router = express.Router();
 const Estado = require("./../model/estados");
 
 router.get("/", (req, res) => {
-  res.status(200).json({ message: "Estados Ok" });
+  res.status(200).json({ message: "Rota inicial Estados Ok" });
 });
 
 router.get("/listall", async (req, res) => {
