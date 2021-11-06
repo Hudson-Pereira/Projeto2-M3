@@ -41,9 +41,36 @@ router.post("/add", async (req, res) => {
     });
 });
 
-// router.put("/update/:id", async (req, res) => {
-//     if(req.params.id.length)//terminar daqui
+router.put("/update/:id", async (req, res) => {
+  if (req.params.id.length == 24) {
+    await Estado.updateOne({ _id: req.params.id }, req.body)
+      .then(() => {
+        res.status(200).json({ message: "Estado alterado com sucesso." });
+      })
+      .catch(() => res.status(400).json({ message: "ERROR" }));
+  }
+  res.status(400).json({
+    message:
+      "Número de ID não encontrado, verifique o número e tente novamente.",
+  });
+});
 
-// })
+router.delete("/delete/:id", async (req, res) => {
+  if (req.params.id.length == 24) {
+    await Estado.deleteOne({ _id: req.params.id })
+      .then(() => {
+        res.status(200).json({ message: "Estado excluido com sucesso." });
+      })
+      .catch(() => {
+        res.status(400).json({ message: "ERROR" });
+      });
+  }
+  res
+    .status(400)
+    .json({
+      message:
+        "Número de ID não encontrado, verifique o número e tente novamente.",
+    });
+});
 
 module.exports = router;
