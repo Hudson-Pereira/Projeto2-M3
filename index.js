@@ -14,6 +14,9 @@ app.use("/estados", routerEstados);
 const routerPaises = require("./router/paises.routes");
 app.use("/paises", routerPaises);
 
+const routerCidades = require("./router/cidades.routes");
+app.use("/cidades", routerCidades);
+
 app.listen(process.env.PORT, () => {
   console.log(`Rodando em http://localhost:${process.env.PORT}.`);
 });
