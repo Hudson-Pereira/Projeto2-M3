@@ -5,6 +5,7 @@ async function Connected() {
   await mongoose
     .connect(
       `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_BASE}`,
+
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -13,8 +14,9 @@ async function Connected() {
     .then(() => {
       console.log("Conectado ao MongoDB/Atlas...");
     })
-    .catch(() => {
-      console.log("ERROR");
+    .catch((err) => {
+      console.log(err);
+      console.log(process.env.DB_HOST);
     });
 }
 
