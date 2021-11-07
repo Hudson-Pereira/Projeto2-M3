@@ -18,7 +18,7 @@ router.get("/listall", async (req, res) => { //listagem de todos os itens da rot
 });
 
 router.get("/listname/:nome", async (req, res) => { //listagem de item por nome da rota cidades
-  await Pais.findOne({ nome: req.params.nome })
+  await Cidade.findOne({ nome: req.params.nome })
     .then((cidade) => {
       res.status(200).json(cidade);
     })
